@@ -1,10 +1,6 @@
 #pragma once
 #include "JSON.h"
 
-namespace JSON {
-    class JSONObject;
-}
-
 class JSON::JSONObject {
 public:
     std::string* keys;

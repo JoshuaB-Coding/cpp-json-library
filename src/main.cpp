@@ -1,14 +1,12 @@
 #include "header.h"
 
 int main() {
-    JSON::JSONObject object = JSON::JSONObject();
-    object.newPair("value", 5.0);
-    object.printAsJSON();
-    object.newPair("World", 2);
-    object.newPair("value", 5);
-    // object.printAsJSON();
+    JSON::JSONParser parser = JSON::JSONParser();
+    std::string jsonString = "{ \"name\": \"John\", \"phone\": 0193 }";
 
-    std::cout << object << std::endl;
+    std::cout << jsonString << std::endl;
+
+    std::cout << "Is valid JSON string: " << parser.isValidJSONString(jsonString) << std::endl;
 
     std::cout << "Hello World!" << std::endl;
     return 0;

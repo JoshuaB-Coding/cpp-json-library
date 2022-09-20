@@ -14,11 +14,16 @@ void JSON::JSONParser::parseStringToJSON(const std::string& input, JSON::JSONObj
     if (!this->isValidJSONString(input)) {
         this->error(parsingString, "Invalid input string");
     }
-    
+
 };
 
 void JSON::JSONParser::parseJSONToString(const JSONObject& input, std::string* jsonString) const {
+    jsonString->clear();
+    jsonString->append("{");
+    // for (std::string key: input.getKeys()) {
 
+    // }
+    jsonString->append("}");
 };
 
 bool JSON::JSONParser::isValidJSONString(const std::string& jsonString) const {

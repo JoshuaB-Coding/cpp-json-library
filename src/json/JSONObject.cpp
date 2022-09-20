@@ -9,12 +9,21 @@ JSON::JSONObject::~JSONObject() {
     delete[] this->keys;
 };
 
-void JSON::JSONObject::printAsJSON() {
+void JSON::JSONObject::printAsJSON() const {
     std::cout << "{" << std::endl;
     for (int i = 0; i < this->size; i++) {
         std::cout << "    \"" << keys[i] << "\": NONE" << std::endl;
     }
     std::cout << "}" << std::endl;
+};
+
+std::string JSON::JSONObject::asString() const {
+    std::string jsonString = "{";
+    for (int i = 0; i < this->size; i++) {
+        jsonString += this->memberAsString(i, 1);
+    }
+    jsonString += "\n}";
+    return jsonString;
 };
 
 JSON::JSONObject::JSONObject(JSONObject* object) {
@@ -43,3 +52,19 @@ bool JSON::JSONObject::isValidKey(const std::string& key) const {
     }
     return true;
 };
+
+std::string JSON::JSONObject::memberAsString(const int& index, const int& indentation) const {
+    std::string output = "\n";
+    if (indentation > 0) {
+        for (int i = 0; i < indentation; i++) {
+            output += "  ";
+        }
+    }
+    output += "\"" + this->keys[index] + "\": NULL";
+    return output;
+};
+
+std::ostream& JSON::operator<<(std::ostream& os, const JSON::JSONObject& object) {
+    os << object.asString() << std::endl;
+    return os;
+}

@@ -1,6 +1,6 @@
 #pragma once
-#include "../header.h"
 
-namespace JSON {
-    
-};
+#include <iostream>
+#include <string>
+
+#include "JSONObject.h"

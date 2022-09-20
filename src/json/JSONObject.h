@@ -1,5 +1,5 @@
 #pragma once
-#include "../header.h"
+#include "JSON.h"
 
 namespace JSON {
     class JSONObject;
@@ -16,7 +16,10 @@ public:
     template<typename T>
     void newPair(const std::string& key, const T& value);
 
-    void printAsJSON();
+    void printAsJSON() const;
+    std::string asString() const;
+
+    friend std::ostream& operator<<(std::ostream& os, const JSONObject& object);
 
 private:
     int size;
@@ -28,6 +31,8 @@ private:
 
     template<typename T>
     void newValue(const T& value);
+
+    std::string memberAsString(const int& index, const int& indentation) const;
 };
 
 // Templates can only be defined in header files apparently

@@ -7,6 +7,7 @@
 namespace JSON {
     class JSONObject;
     class JSONParser;
+    class JSONKeys;
 }
 
 #include "JSONObject.h"

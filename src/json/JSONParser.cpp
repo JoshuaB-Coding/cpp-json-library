@@ -17,9 +17,9 @@ void JSON::JSONParser::parseStringToJSON(const std::string& input, JSON::JSONObj
     
 };
 
-// void JSON::JSONParser::parseJSONToString(const JSONObject& input, std::string* jsonString) const {
+void JSON::JSONParser::parseJSONToString(const JSONObject& input, std::string* jsonString) const {
 
-// };
+};
 
 bool JSON::JSONParser::isValidJSONString(const std::string& jsonString) const {
     return std::regex_match(jsonString, _regexPattern);

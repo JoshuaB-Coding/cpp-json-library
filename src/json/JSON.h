@@ -12,3 +12,4 @@ namespace JSON {
 
 #include "JSONObject.h"
 #include "JSONParser.h"
+#include "JSONKeys.h"

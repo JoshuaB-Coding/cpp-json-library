@@ -12,8 +12,8 @@ int main() {
     keys.addKey("key1");
     keys.addKey("key2");
 
-    for (std::string key: keys) {
-        std::cout << key << std::endl;
+    for (JSON::JSONKey key: keys) {
+        std::cout << key.keyValue() << std::endl;
     }
 
     std::cout << "Hello World!" << std::endl;

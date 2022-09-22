@@ -7,7 +7,9 @@ public:
     ~JSONParser();
 
     void parseStringToJSON(const std::string& input, JSON::JSONObject* object) const;
-    void parseJSONToString(const JSONObject& input, std::string* string) const;
+    void parseJSONToString(const JSONObject& input, std::string& string) const;
+
+    void parseFromFile(const FileType& fileType, const std::string& filename, JSON::JSONObject* object) const;
 
     bool isValidJSONString(const std::string& jsonString) const;
 
@@ -22,6 +24,9 @@ private:
         }
         std::cout << message << std::endl;
     }
+
+    std::string parseJSONFile(const std::string& filename) const;
+    std::string parseTxtFile(const std::string& filename) const;
 
     // bool isValidJSONString(const std::string& jsonString) const;
 };

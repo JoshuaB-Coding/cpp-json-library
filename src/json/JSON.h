@@ -11,6 +11,8 @@ namespace JSON {
     class JSONParser;
 
     class CommandLineParser;
+
+    enum FileType { json, txt };
 }
 
 #include "JSONKey.h"

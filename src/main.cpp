@@ -8,6 +8,13 @@ int main() {
 
     std::cout << "Is valid JSON string: " << parser.isValidJSONString(jsonString) << std::endl;
 
-    std::cout << "Hello World!" << std::endl;
+    JSON::JSONKeys keys = JSON::JSONKeys();
+    keys.addKey("key1");
+    keys.addKey("key2");
+
+    JSON::JSONKey key = JSON::JSONKey("key");
+    keys.addKey(key);
+
+    std::cout << keys << std::endl;
     return 0;
 }

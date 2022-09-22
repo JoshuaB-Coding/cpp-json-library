@@ -12,10 +12,9 @@ int main() {
     keys.addKey("key1");
     keys.addKey("key2");
 
-    for (JSON::JSONKey key: keys) {
-        std::cout << key.keyValue() << std::endl;
-    }
+    JSON::JSONKey key = JSON::JSONKey("key");
+    keys.addKey(key);
 
-    std::cout << "Hello World!" << std::endl;
+    std::cout << keys << std::endl;
     return 0;
 }

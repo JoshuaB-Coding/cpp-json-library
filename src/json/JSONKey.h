@@ -11,12 +11,9 @@ public:
 
     friend bool operator==(const JSONKey& key1, const JSONKey& key2);
     friend bool operator!=(const JSONKey& key1, const JSONKey& key2);
-
-    std::string keyValue() const { return _key; }
+    
+    friend std::ostream& operator<<(std::ostream& os, const JSONKey& key);
 
 private:
     std::string _key;
 };
-
-// bool JSON::operator==(const JSON::JSONKey& key1, const JSON::JSONKey& key2);
-// bool JSON::operator!=(const JSON::JSONKey& key1, const JSON::JSONKey& key2);

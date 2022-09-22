@@ -25,3 +25,8 @@ bool JSON::operator==(const JSON::JSONKey& key1, const JSON::JSONKey& key2) {
 bool JSON::operator!=(const JSON::JSONKey& key1, const JSON::JSONKey& key2) {
     return key1._key != key2._key;
 };
+
+std::ostream& JSON::operator<<(std::ostream& os, const JSON::JSONKey& key) {
+    os << "\"" << key._key << "\"";
+    return os;
+};

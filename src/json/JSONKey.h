@@ -14,6 +14,8 @@ public:
     
     friend std::ostream& operator<<(std::ostream& os, const JSONKey& key);
 
+    std::string getKey() const;
+
 private:
     std::string _key;
 };

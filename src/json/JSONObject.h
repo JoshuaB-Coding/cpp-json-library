@@ -3,10 +3,7 @@
 
 class JSON::JSONObject {
 public:
-    std::string* keys;
-
     JSONObject();
-
     ~JSONObject();
 
     template<typename T>
@@ -18,12 +15,9 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const JSONObject& object);
 
 private:
-    int size;
+    JSON::JSONKeys _keys;
 
-    JSONObject(JSONObject* object);
-
-    bool newKey(const std::string& key);
-    bool isValidKey(const std::string& key) const;
+    bool newKey(const JSON::JSONKey& key);
 
     template<typename T>
     void newValue(const T& value);
@@ -35,12 +29,12 @@ private:
 
 template<typename T>
 void JSON::JSONObject::newPair(const std::string& key, const T& value) {
-    if (this->newKey(key)) {
-        this->newValue<T>(value);
-        this->size++;
-    } else {
-        std::cout << "key name '" << key << "' already exists" << std::endl;
-    }
+    // if (this->newKey(key)) {
+    //     this->newValue<T>(value);
+    //     this->size++;
+    // } else {
+    //     std::cout << "key name '" << key << "' already exists" << std::endl;
+    // }
 };
 
 template<typename T>

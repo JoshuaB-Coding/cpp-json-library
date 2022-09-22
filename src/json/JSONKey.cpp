@@ -30,3 +30,7 @@ std::ostream& JSON::operator<<(std::ostream& os, const JSON::JSONKey& key) {
     os << "\"" << key._key << "\"";
     return os;
 };
+
+std::string JSON::JSONKey::getKey() const {
+    return _key;
+};

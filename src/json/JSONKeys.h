@@ -12,6 +12,10 @@ public:
     void addKey(const std::string& key);
     void addKey(const JSON::JSONKey& key);
 
+    int length() const;
+
+    JSONKey& operator[](int) const;
+
     friend std::ostream& operator<<(std::ostream& os, const JSONKeys& keys);
 
     struct Iterator;

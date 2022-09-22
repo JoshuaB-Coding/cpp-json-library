@@ -42,6 +42,18 @@ void JSON::JSONKeys::addKey(const JSON::JSONKey& key) {
     _size++;
 };
 
+int JSON::JSONKeys::length() const {
+    return _size;
+};
+
+JSON::JSONKey& JSON::JSONKeys::operator[](int index) const {
+    if (index < _size && index > -1) {
+        return _keys[index];
+    }
+    std::cout << "JSONKeys::operator[]: index out of range" << std::endl;
+    exit(0);
+};
+
 void JSON::JSONKeys::copyKeys(const JSON::JSONKey* oldKeys, const int& size, JSON::JSONKey* newKeys) const {
     for (int i = 0; i < size; i++) {
         newKeys[i] = oldKeys[i];

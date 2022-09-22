@@ -1,8 +1,8 @@
 #include "JSON.h"
 
 JSON::JSONObject::JSONObject() {
-    this->size = 0;
-    this->keys = new std::string[this->size];
+    this->_size = 0;
+    this->keys = new std::string[this->_size];
 };
 
 JSON::JSONObject::~JSONObject() {
@@ -11,15 +11,15 @@ JSON::JSONObject::~JSONObject() {
 
 void JSON::JSONObject::printAsJSON() const {
     std::cout << "{" << std::endl;
-    for (int i = 0; i < this->size; i++) {
-        std::cout << "    \"" << keys[i] << "\": NONE" << std::endl;
+    for (int i = 0; i < this->_size; i++) {
+        std::cout << _pairs[i] << std::endl;
     }
     std::cout << "}" << std::endl;
 };
 
 std::string JSON::JSONObject::asString() const {
     std::string jsonString = "{";
-    for (int i = 0; i < this->size; i++) {
+    for (int i = 0; i < this->_size; i++) {
         jsonString += this->memberAsString(i, 1);
     }
     jsonString += "\n}";
@@ -27,25 +27,25 @@ std::string JSON::JSONObject::asString() const {
 };
 
 JSON::JSONObject::JSONObject(JSONObject* object) {
-    this->size = object->size;
+    this->_size = object->_size;
 };
 
 bool JSON::JSONObject::newKey(const std::string& key) {
     if (!isValidKey(key)) {
         return false;
     }
-    std::string* newKeys = new std::string[this->size + 1];
-    for (int i = 0; i < this->size; i++) {
+    std::string* newKeys = new std::string[this->_size + 1];
+    for (int i = 0; i < this->_size; i++) {
         newKeys[i] = this->keys[i];
     }
-    newKeys[this->size] = key;
+    newKeys[this->_size] = key;
     delete[] this->keys;
     this->keys = newKeys;
     return true;
 };
 
 bool JSON::JSONObject::isValidKey(const std::string& key) const {
-    for (int i = 0; i < this->size; i++) {
+    for (int i = 0; i < this->_size; i++) {
         if (this->keys[i] == key) {
             return false;
         }

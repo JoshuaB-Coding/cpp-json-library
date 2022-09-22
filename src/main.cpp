@@ -8,17 +8,13 @@ int main() {
 
     std::cout << "Is valid JSON string: " << parser.isValidJSONString(jsonString) << std::endl;
 
-    // JSON::JSONKeys keys = JSON::JSONKeys();
-    // keys.addKey("key1");
-    // keys.addKey("key2");
+    JSON::JSONKeys keys = JSON::JSONKeys();
+    keys.addKey("key1");
+    keys.addKey("key2");
 
-    JSON::JSONKey key1 = JSON::JSONKey("Hello");
-    JSON::JSONKey key2 = JSON::JSONKey("Hello");
-    std::cout << (key1 == key2) << std::endl;
-
-    // for (JSON::JSONKey key: keys) {
-    //     std::cout << key.keyValue() << std::endl;
-    // }
+    for (JSON::JSONKey key: keys) {
+        std::cout << key.keyValue() << std::endl;
+    }
 
     std::cout << "Hello World!" << std::endl;
     return 0;

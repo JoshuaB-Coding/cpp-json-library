@@ -27,14 +27,12 @@ public:
     Iterator begin() { return Iterator(&_keys[0]); }
     Iterator end() { return Iterator(&_keys[_size]); }
 
-    JSON::JSONKey* getKeys() const { return _keys; }
-
     bool isValidKey(const std::string& key) const { return true; }
 
     void addKey(const std::string& key) {
         JSON::JSONKey* newKeys = new JSON::JSONKey[_size + 1];
         copyKeys(_keys, _size, newKeys);
-        // newKeys[_size] = key;
+        newKeys[_size] = key;
         delete[] _keys;
         _keys = newKeys;
         _size++;

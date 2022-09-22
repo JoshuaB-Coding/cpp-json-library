@@ -15,15 +15,8 @@ public:
     std::string keyValue() const { return _key; }
 
 private:
-    const std::string _key;
+    std::string _key;
 };
 
 // bool JSON::operator==(const JSON::JSONKey& key1, const JSON::JSONKey& key2);
 // bool JSON::operator!=(const JSON::JSONKey& key1, const JSON::JSONKey& key2);
-bool JSON::operator==(const JSON::JSONKey& key1, const JSON::JSONKey& key2) {
-    return key1._key == key2._key;
-};
-
-bool JSON::operator!=(const JSON::JSONKey& key1, const JSON::JSONKey& key2) {
-    return key1._key != key2._key;
-};

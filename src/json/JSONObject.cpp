@@ -1,4 +1,4 @@
-#include "JSONObject.h"
+#include "JSON.h"
 
 JSON::JSONObject::JSONObject() {
     this->size = 0;

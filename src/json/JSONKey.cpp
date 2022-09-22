@@ -8,9 +8,9 @@ JSON::JSONKey::JSONKey(const std::string& key) : _key(key) {
     
 };
 
-// JSON::JSONKey::~JSONKey() {
+JSON::JSONKey::~JSONKey() {
     
-// };
+};
 
 JSON::JSONKey& JSON::JSONKey::operator=(const JSON::JSONKey& key) {
     if (this == &key) return *this;

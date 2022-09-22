@@ -5,7 +5,7 @@ class JSON::JSONKey {
 public:
     JSONKey();
     JSONKey(const std::string& key);
-    // ~JSONKey();
+    ~JSONKey();
 
     JSONKey& operator=(const JSONKey& key);
 

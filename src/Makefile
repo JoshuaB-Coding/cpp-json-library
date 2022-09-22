@@ -11,10 +11,13 @@ JSONTest: $(OBJS)
 
 all: JSONTest
 
-test: ./JSONTest
-	@echo Building code...
-	make
+.PHONY: run
+run: ./JSONTest
+	@echo Removing generated object files...
+	make clean
 	@echo Executing JSONTest [main.cpp code]...
 	./JSONTest
 
 .PHONY: clean
+clean:
+	rm *.o json/*.o

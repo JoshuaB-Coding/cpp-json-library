@@ -9,9 +9,12 @@ namespace JSON {
     class JSONKeys;
     class JSONObject;
     class JSONParser;
+
+    class CommandLineParser;
 }
 
 #include "JSONKey.h"
 #include "JSONKeys.h"
 #include "JSONObject.h"
 #include "JSONParser.h"
+#include "CommandLineParser.h"

@@ -1,20 +1,22 @@
 #include "header.h"
 
-int main() {
-    JSON::JSONParser parser = JSON::JSONParser();
-    std::string jsonString = "{ \"name\": \"John\", \"phone\": 0193 }";
+int main(int argc, char** argv) {
+    JSON::CommandLineParser clParser(argc, argv);
 
-    std::cout << jsonString << std::endl;
+    // JSON::JSONParser parser = JSON::JSONParser();
+    // std::string jsonString = "{ \"name\": \"John\", \"phone\": 0193 }";
 
-    std::cout << "Is valid JSON string: " << parser.isValidJSONString(jsonString) << std::endl;
+    // std::cout << jsonString << std::endl;
 
-    JSON::JSONKeys keys = JSON::JSONKeys();
-    keys.addKey("key1");
-    keys.addKey("key2");
+    // std::cout << "Is valid JSON string: " << parser.isValidJSONString(jsonString) << std::endl;
 
-    JSON::JSONKey key = JSON::JSONKey("key");
-    keys.addKey(key);
+    // JSON::JSONKeys keys = JSON::JSONKeys();
+    // keys.addKey("key1");
+    // keys.addKey("key2");
 
-    std::cout << keys << std::endl;
+    // JSON::JSONKey key = JSON::JSONKey("key");
+    // keys.addKey(key);
+
+    // std::cout << keys << std::endl;
     return 0;
 }

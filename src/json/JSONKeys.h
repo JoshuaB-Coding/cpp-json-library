@@ -33,10 +33,8 @@ public:
 
     void addKey(const std::string& key) {
         JSON::JSONKey* newKeys = new JSON::JSONKey[_size + 1];
-        for (int i = 0; i < _size; i++) {
-            newKeys[i] = _keys[i];
-        }
-        newKeys[_size] = key;
+        copyKeys(_keys, _size, newKeys);
+        // newKeys[_size] = key;
         delete[] _keys;
         _keys = newKeys;
         _size++;
@@ -45,6 +43,12 @@ public:
 private:
     int _size;
     JSON::JSONKey* _keys;
+
+    void copyKeys(const JSON::JSONKey* oldKeys, const int& size, JSON::JSONKey* newKeys) const {
+        for (int i = 0; i < size; i++) {
+            newKeys[i] = oldKeys[i];
+        }
+    }
 };
 
 // All taken from: https://www.internalpointers.com/post/writing-custom-iterators-modern-cpp

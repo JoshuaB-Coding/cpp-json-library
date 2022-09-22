@@ -5,13 +5,13 @@
 #include <regex>
 
 namespace JSON {
-    class JSONObject;
-    class JSONParser;
     class JSONKey;
     class JSONKeys;
+    class JSONObject;
+    class JSONParser;
 }
 
-#include "JSONObject.h"
-#include "JSONParser.h"
 #include "JSONKey.h"
 #include "JSONKeys.h"
+#include "JSONObject.h"
+#include "JSONParser.h"

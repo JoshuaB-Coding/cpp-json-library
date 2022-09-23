@@ -9,6 +9,26 @@ JSON::JSONObject::~JSONObject() {
     delete[] this->keys;
 };
 
+bool JSON::JSONObject::newPair(const std::string& pair) {
+    // TODO: Code goes here
+    return true;
+};
+
+bool JSON::JSONObject::newPair(const std::string& key, const JSON::number& value) {
+    // TODO: Code goes here
+    return true;
+};
+
+bool JSON::JSONObject::newPair(const std::string& key, const JSON::string& value) {
+    // TODO: Code goes here
+    return true;
+};
+
+bool JSON::JSONObject::newPair(const std::string& key, const JSON::JSONObject& object) {
+    // TODO: Code goes here
+    return true;
+};
+
 void JSON::JSONObject::printAsJSON() const {
     std::cout << "{" << std::endl;
     for (int i = 0; i < this->size; i++) {

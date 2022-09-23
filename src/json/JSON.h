@@ -12,6 +12,12 @@ namespace JSON {
 
     class CommandLineParser;
 
+    class JSONNumber;
+    typedef JSONNumber number;
+
+    class JSONString;
+    typedef JSONString string;
+
     enum FileType { json, txt };
 }
 
@@ -20,3 +26,5 @@ namespace JSON {
 #include "JSONObject.h"
 #include "JSONParser.h"
 #include "CommandLineParser.h"
+#include "JSONNumber.h"
+#include "JSONString.h"

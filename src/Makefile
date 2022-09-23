@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -O0
 HDRS = json/JSON.h
-OBJS = main.o json/JSON.o json/CommandLineParser.o json/JSONParser.o json/JSONObject.o json/JSONKey.o json/JSONKeys.o json/JSONNumber.o json/JSONString.o
+OBJS = main.o
 
 %.o : %.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
@@ -18,4 +18,4 @@ run: ./JSONTest
 
 .PHONY: clean
 clean:
-	rm *.o json/*.o
+	rm *.o

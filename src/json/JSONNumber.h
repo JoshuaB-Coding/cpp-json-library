@@ -3,9 +3,15 @@
 
 class JSON::JSONNumber {
 public:
-    JSONNumber(const int& number) : m_number(number) { };
-    JSONNumber(const float& number) : m_number(number) { };
-    JSONNumber(const double& number) : m_number(number) { };
+    JSONNumber(const int& number) : m_number(number) { }
+    JSONNumber(const float& number) : m_number(number) { }
+    JSONNumber(const double& number) : m_number(number) { }
+    JSONNumber(const std::string& number) {
+        m_number = atof(number.c_str());
+    }
+    JSONNumber(const char* number) {
+        m_number = atof(number);
+    }
 
     JSONNumber operator+(const JSONNumber& number) {
         return this->m_number + number.m_number;

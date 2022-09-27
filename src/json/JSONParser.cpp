@@ -1,6 +1,6 @@
 #include "JSON.h"
 
-const std::regex JSON::JSONParser::_regexPattern = std::regex("^{[\"a-zA-Z:{},0-9 ]+}$");
+const std::regex JSON::JSONParser::_regexPattern = std::regex("^[\"a-zA-Z:{},0-9 ]+$"); // "^{[\"a-zA-Z:{},0-9 ]+}$"
 
 JSON::JSONParser::JSONParser() {
 

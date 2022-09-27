@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -O0
 HDRS = json/JSON.h
-OBJS = main.o json/JSON.o json/CommandLineParser.o json/JSONParser.o json/JSONObject.o json/JSONKey.o json/JSONKeys.o
+OBJS = main.o json/JSON.o json/CommandLineParser.o json/JSONParser.o json/JSONObject.o
 
 %.o : %.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<

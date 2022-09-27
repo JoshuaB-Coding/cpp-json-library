@@ -1,7 +1,15 @@
 #include "header.h"
 
 int main(int argc, char** argv) {
-    JSON::CommandLineParser clParser(argc, argv);
+    // JSON::CommandLineParser clParser(argc, argv);
+ 
+    JSON::JSONObject object;
+    std::cout << object << std::endl;
+
+    object.newPair("key1", 1);
+    object.newPair("key2", 2);
+
+    std::cout << object << std::endl;
 
     // JSON::JSONParser parser = JSON::JSONParser();
     // std::string jsonString = "{ \"name\": \"John\", \"phone\": 0193 }";
@@ -9,14 +17,5 @@ int main(int argc, char** argv) {
     // std::cout << jsonString << std::endl;
 
     // std::cout << "Is valid JSON string: " << parser.isValidJSONString(jsonString) << std::endl;
-
-    // JSON::JSONKeys keys = JSON::JSONKeys();
-    // keys.addKey("key1");
-    // keys.addKey("key2");
-
-    // JSON::JSONKey key = JSON::JSONKey("key");
-    // keys.addKey(key);
-
-    // std::cout << keys << std::endl;
     return 0;
 }

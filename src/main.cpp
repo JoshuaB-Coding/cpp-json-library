@@ -1,7 +1,12 @@
 #include "header.h"
 
 int main(int argc, char** argv) {
-    JSON::CommandLineParser clParser(argc, argv);
+    // JSON::CommandLineParser clParser(argc, argv);
+
+    JSON::JSONObject* object;
+    JSON::JSONParser parser;
+    std::string jsonString = "{ \"key1\": \"value1\", \"key2\": value2, \"key3\": 5 }";
+    parser.parseStringToJSON(jsonString, object);
 
     // JSON::JSONParser parser = JSON::JSONParser();
     // std::string jsonString = "{ \"name\": \"John\", \"phone\": 0193 }";

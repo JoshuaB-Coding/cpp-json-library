@@ -9,8 +9,7 @@ public:
     struct Keys;
     struct Number;
     struct String;
-
-    Keys* m_keys; // TODO: Fix this way of defining m_keys
+    struct Array;
 
     template<typename T>
     void newPair(const std::string& key, const T& value);
@@ -22,6 +21,7 @@ public:
 
 private:
     int size;
+    Keys* m_keys;
 
     JSONObject(JSONObject* object);
 
@@ -56,14 +56,13 @@ struct JSON::JSONObject::Keys {
     Keys();
     ~Keys();
 
-    struct Key;
     struct Iterator;
 
     bool isValidKey(const std::string& key) const;
 
     void addKey(const std::string& key);
 
-    Key& operator[](int);
+    std::string& operator[](int);
 
     friend std::ostream& operator<<(std::ostream& os, const Keys& keys);
 
@@ -72,43 +71,18 @@ struct JSON::JSONObject::Keys {
 
 private:
     int _size;
-    Key* _keys;
+    std::string* _keys;
 
-    Keys(const Keys* keys, const Key& newKey);
-
-    void copyKeys(const Key* oldKeys, const int& size, Key* newKeys) const;
-
-    bool isValidKey(const Key& key) const;
-
-    void addKey(const Key& key);
-};
-
-struct JSON::JSONObject::Keys::Key {
-public:
-    Key();
-    Key(const std::string& key);
-    ~Key();
-
-    Key& operator=(const Key& key);
-
-    std::string asString() const { return _key; }
-
-    friend bool operator==(const Key& key1, const Key& key2);
-    friend bool operator!=(const Key& key1, const Key& key2);
-    
-    friend std::ostream& operator<<(std::ostream& os, const Key& key);
-
-private:
-    std::string _key;
+    void copyKeys(const std::string* oldKeys, std::string* newKeys, const int& size) const;
 };
 
 // All taken from: https://www.internalpointers.com/post/writing-custom-iterators-modern-cpp
 struct JSON::JSONObject::Keys::Iterator {
 public:
-    Iterator(Key* ptr);
+    Iterator(std::string* ptr);
 
-    Key& operator*();
-    Key* operator->();
+    std::string& operator*();
+    std::string* operator->();
 
     Iterator& operator++();
 
@@ -118,7 +92,7 @@ public:
     friend bool operator!=(const Iterator& a, const Iterator& b);
 
 private:
-    Key* _ptr;
+    std::string* _ptr;
 };
 
 struct JSON::JSONObject::Number {
@@ -126,5 +100,9 @@ struct JSON::JSONObject::Number {
 };
 
 struct JSON::JSONObject::String {
+
+};
+
+struct JSON::JSONObject::Array {
 
 };

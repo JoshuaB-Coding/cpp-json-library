@@ -57,7 +57,7 @@ std::string JSON::JSONObject::memberAsString(const int& index, const int& indent
             output += "  ";
         }
     }
-    output += "\"" + (*m_keys)[index].asString() + "\": NULL";
+    output += "\"" + (*m_keys)[index] + "\": NULL";
     return output;
 };
 
@@ -83,11 +83,6 @@ JSON::JSONObject::Keys::Iterator JSON::JSONObject::Keys::end() {
 };
 
 bool JSON::JSONObject::Keys::isValidKey(const std::string& key) const {
-    Key queryKey = Key(key);
-    return isValidKey(queryKey);
-};
-
-bool JSON::JSONObject::Keys::isValidKey(const JSON::JSONObject::Keys::Key& key) const {
     for (int i = 0; i < _size; i++) {
         if (key == _keys[i]) return false;
     }
@@ -95,34 +90,15 @@ bool JSON::JSONObject::Keys::isValidKey(const JSON::JSONObject::Keys::Key& key) 
 };
 
 void JSON::JSONObject::Keys::addKey(const std::string& key) {
-    Key newKey = Key(key);
-    addKey(newKey);
-};
-
-JSON::JSONObject::Keys::Keys(const Keys* keys, const Key& newKey) {
-    _size = keys->_size + 1;
-    _keys = new Key[_size];
-    for (int i = 0; i < keys->_size; i++) {
-        _keys[i] = keys->_keys[i];
-    }
-    _keys[keys->_size] = newKey;
-};
-
-void JSON::JSONObject::Keys::addKey(const Key& key) {
-    Keys newKeys(this, key);
+    std::string* newKeys = new std::string[_size + 1];
+    copyKeys(_keys, newKeys, _size);
+    newKeys[_size] = key;
     delete[] _keys;
-    _keys = newKeys._keys; // TODO: this is a lazy method
+    _keys = newKeys;
+    _size++;
 };
 
-JSON::JSONObject::Keys::Key& JSON::JSONObject::Keys::operator[](int index) {
-    if (index < 0 || index >= _size) {
-        std::cout << "Key::operator[] - invalid index" << std::endl;
-        exit(1);
-    }
-    return _keys[index];
-};
-
-void JSON::JSONObject::Keys::copyKeys(const JSON::JSONObject::Keys::Key* oldKeys, const int& size, JSON::JSONObject::Keys::Key* newKeys) const {
+void JSON::JSONObject::Keys::copyKeys(const std::string* oldKeys, std::string* newKeys, const int& size) const {
     for (int i = 0; i < size; i++) {
         newKeys[i] = oldKeys[i];
     }
@@ -141,15 +117,23 @@ std::ostream& JSON::operator<<(std::ostream& os, const JSON::JSONObject::Keys& k
     return os;
 };
 
-JSON::JSONObject::Keys::Iterator::Iterator(JSON::JSONObject::Keys::Key* ptr) : _ptr(ptr) {
+std::string& JSON::JSONObject::Keys::operator[](int index) {
+    if (index < 0 || index >= _size) {
+        std::cout << "Index out of range" << std::endl;
+        exit(1);
+    }
+    return _keys[index];
+}
+
+JSON::JSONObject::Keys::Iterator::Iterator(std::string* ptr) : _ptr(ptr) {
 
 };
 
-JSON::JSONObject::Keys::Key& JSON::JSONObject::Keys::Iterator::operator*() {
+std::string& JSON::JSONObject::Keys::Iterator::operator*() {
     return *_ptr;
 };
 
-JSON::JSONObject::Keys::Key* JSON::JSONObject::Keys::Iterator::operator->() {
+std::string* JSON::JSONObject::Keys::Iterator::operator->() {
     return _ptr;
 };
 
@@ -170,35 +154,4 @@ bool JSON::operator==(const JSON::JSONObject::Keys::Iterator& a, const JSON::JSO
 
 bool JSON::operator!=(const JSON::JSONObject::Keys::Iterator& a, const JSON::JSONObject::Keys::Iterator& b) {
     return a._ptr != b._ptr;
-};
-
-JSON::JSONObject::Keys::Key::Key() {
-
-};
-
-JSON::JSONObject::Keys::Key::Key(const std::string& key) : _key(key) {
-    
-};
-
-JSON::JSONObject::Keys::Key::~Key() {
-    
-};
-
-JSON::JSONObject::Keys::Key& JSON::JSONObject::Keys::Key::operator=(const JSON::JSONObject::Keys::Key& key) {
-    if (this == &key) return *this;
-    _key = key._key;
-    return *this;
-};
-
-bool JSON::operator==(const JSON::JSONObject::Keys::Key& key1, const JSON::JSONObject::Keys::Key& key2) {
-    return key1._key == key2._key;
-};
-
-bool JSON::operator!=(const JSON::JSONObject::Keys::Key& key1, const JSON::JSONObject::Keys::Key& key2) {
-    return key1._key != key2._key;
-};
-
-std::ostream& JSON::operator<<(std::ostream& os, const JSON::JSONObject::Keys::Key& key) {
-    os << "\"" << key._key << "\"";
-    return os;
 };

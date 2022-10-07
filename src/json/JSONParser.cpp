@@ -15,33 +15,44 @@ void JSON::JSONParser::parseStringToJSON(const std::string& input, JSON::JSONObj
     if (!this->isValidJSONString(input)) {
         this->error(parsingString, "Invalid input string");
     }
-    int keyStart = jsonString.find_first_of("\"");
-    int objectStart = jsonString.substr(1).find_first_of("{");
-    int pairEnd = jsonString.find_first_of(",");
-    while (pairEnd != std::string::npos) {
-        for (int i = keyStart; i < pairEnd; i++) {
-            std::cout << jsonString[i];
-        }
-        std::cout << std::endl;
 
-        jsonString.substr(keyStart, pairEnd);
+    while (jsonString.find(" ") != std::string::npos) {
+        int tokenEnd = jsonString.find(" ");
+        std::string token = jsonString.substr(0, tokenEnd);
+        std::cout << token << std::endl;
 
-        if (objectStart != std::string::npos) {
-            if (objectStart < pairEnd) {
-                // TODO: call parseStringToJSON - this is quite hard to do
-                std::cout << "OBJECT FOUND!" << std::endl;
-            }
-        }
+        Tokenizer tokenizer(token);
 
-        jsonString.erase(jsonString.begin(), jsonString.begin() + pairEnd + 1);
-
-        keyStart = jsonString.find_first_of("\"");
-        pairEnd = jsonString.find_first_of(",");
+        jsonString.erase(jsonString.begin(), jsonString.begin() + tokenEnd + 1);
     }
-    for (int i = keyStart; i < jsonString.size() - 1; i++) {
-        std::cout << jsonString[i];
-    }
-    std::cout << std::endl;
+
+    // int keyStart = jsonString.find_first_of("\"");
+    // int objectStart = jsonString.substr(1).find_first_of("{");
+    // int pairEnd = jsonString.find_first_of(",");
+    // while (pairEnd != std::string::npos) {
+    //     for (int i = keyStart; i < pairEnd; i++) {
+    //         std::cout << jsonString[i];
+    //     }
+    //     std::cout << std::endl;
+
+    //     jsonString.substr(keyStart, pairEnd);
+
+    //     if (objectStart != std::string::npos) {
+    //         if (objectStart < pairEnd) {
+    //             // TODO: call parseStringToJSON - this is quite hard to do
+    //             std::cout << "OBJECT FOUND!" << std::endl;
+    //         }
+    //     }
+
+    //     jsonString.erase(jsonString.begin(), jsonString.begin() + pairEnd + 1);
+
+    //     keyStart = jsonString.find_first_of("\"");
+    //     pairEnd = jsonString.find_first_of(",");
+    // }
+    // for (int i = keyStart; i < jsonString.size() - 1; i++) {
+    //     std::cout << jsonString[i];
+    // }
+    // std::cout << std::endl;
 };
 
 void JSON::JSONParser::parseJSONToString(const JSONObject& input, std::string& jsonString) const {

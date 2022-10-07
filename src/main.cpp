@@ -1,7 +1,9 @@
 #include "header.h"
 
 int main(int argc, char** argv) {
-    // JSON::CommandLineParser clParser(argc, argv);
+    // TESTING - Parsing by token
+
+    JSON::CommandLineParser clParser(argc, argv);
 
     JSON::JSONObject* object;
     JSON::JSONParser parser;
